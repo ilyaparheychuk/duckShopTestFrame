@@ -1,0 +1,29 @@
+{
+  "name": "duckshoptestframe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:all": "npx playwright test",
+    "test:tc1": "npx playwright test tests/tc-1-order-one-product-without-sales.spec.ts",
+    "test:tc2": "npx playwright test tests/tc-2-order-one-product-with-sales.spec.ts",
+    "test:tc3": "npx playwright test tests/tc-3-order-without-login.spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilyaparhejchuk/duckShopTestFrame.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ilyaparhejchuk/duckShopTestFrame/issues"
+  },
+  "homepage": "https://github.com/ilyaparhejchuk/duckShopTestFrame#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.2.0",
+    "dotenv": "^17.4.2"
+  }
+}
