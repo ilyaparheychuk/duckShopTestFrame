@@ -1,59 +1,64 @@
-import test, { expect } from "@playwright/test";
-import { CartPage, HomePage, OrderSuccessPage, ProductPage } from "../src/pages";
-import { CartComponent, LoginComponent, NoticeComponent, ProductCardComponent } from "../src/components";
+import { expect } from "@playwright/test";
 import { ProductName } from "../src/types/types";
+import { test } from "../src/fixtures/fixtures";
+import { PageManager } from "../src/pages/page-manager/page-manager";
+import { ComponentManager } from "../src/components/component-manager/component-manager";
+import { Timeouts } from "../src/enums/enums";
+import { clearCartViaUI } from "../src/utils/clearCartHelper";
 
 test.describe("Test case 1", () => {
-  test("Order one item without discount", async ({ page, baseURL }) => {
-    const userName = process.env.TEST_USERNAME || "";
-    const userEmail = process.env.TEST_USER_EMAIL || "";
-    const userPassword = process.env.TEST_PASSWORD || "";
+  //TODO. Rewrite it to API methods
+  test.beforeEach(async ({ page, baseURL, credentials }) => {
+    await clearCartViaUI(page, baseURL!, credentials);
+  });
 
-    const homePage = new HomePage(page);
-    const loginComponent = new LoginComponent(page);
-    const noticeComponent = new NoticeComponent(page);
-    const productCard = new ProductCardComponent(page);
-    const productPage = new ProductPage(page);
-    const cartComponent = new CartComponent(page);
-    const cartPage = new CartPage(page);
-    const orderSuccessPage = new OrderSuccessPage(page);
+  test("Order one item without discount", async ({ page, baseURL, credentials }) => {
+    const pageManager = new PageManager(page);
+    const componentManager = new ComponentManager(page);
 
-    await homePage.goto(baseURL);
     const cardName: ProductName = "Blue Duck";
-
-    await test.step("Login to Litecart and check login success", async () => {
-      await loginComponent.loginFlow(userEmail, userPassword);
-      await expect(await noticeComponent.getSuccessMessage()).toBe(` You are now logged in as ${userName}.`);
-    });
-
-    await test.step("Choose Blue Duck product without sales", async () => {
-      await productCard.chooseCardByTitleName(cardName);
-      await expect(await productPage.getTitle()).toBe(cardName);
-    });
 
     const quantity = "3";
     let sum: number;
 
-    await test.step("Add 3 items and check cart", async () => {
-      await productPage.addQuantity(quantity);
-      await productPage.clickAddToCartButton();
+    await test.step("Open home page", async () => await pageManager.homePage.goto(baseURL));
 
-      sum = (await productPage.getPrice()) * Number(quantity);
+    await test.step("Login to Litecart", async () =>
+      await componentManager.loginComponent.loginFlow(credentials.email, credentials.password));
 
-      await expect(cartComponent.cartContent).toHaveText(`Cart: ${quantity} item(s) - $${sum}`, { timeout: 5000 });
+    await test.step("Check login success", async () =>
+      expect(await componentManager.noticeComponent.getSuccessMessage()).toBe(
+        ` You are now logged in as ${credentials.username}.`,
+      ));
+
+    await test.step("Choose Blue Duck product", async () =>
+      await componentManager.productCardComponent.chooseCardByTitleName(cardName));
+
+    await test.step("Check that product page with correct title opened", async () =>
+      expect(await pageManager.productPage.getTitle()).toBe(cardName));
+
+    await test.step("Add 3 items", async () => {
+      await pageManager.productPage.addQuantity(quantity);
+      await pageManager.productPage.clickAddToCartButton();
+
+      sum = (await pageManager.productPage.getPrice()) * Number(quantity);
     });
 
-    await test.step("Go to cart and check data of order is correct", async () => {
-      await cartComponent.clickToCart();
+    await test.step("Check that cart component has correct data", async () =>
+      await expect(componentManager.cartComponent.cartContent).toHaveText(`Cart: ${quantity} item(s) - $${sum}`, {
+        timeout: Timeouts.standard,
+      }));
 
-      await expect(await cartPage.getOrderSummaryProductQuantity(cardName)).toBe(quantity);
-      await expect(await cartPage.getOrderSummaryProductTotal(cardName)).toBe(`$${sum.toFixed(2)}`);
+    await test.step("Go to cart page", async () => await componentManager.cartComponent.clickToCart());
+
+    await test.step("Check data of order is correct", async () => {
+      expect(await pageManager.cartPage.getOrderSummaryProductQuantity(cardName)).toBe(quantity);
+      expect(await pageManager.cartPage.getOrderSummaryProductTotal(cardName)).toBe(`$${sum.toFixed(2)}`);
     });
 
-    await test.step("Confirm order", async () => {
-      await cartPage.confirmOrder();
+    await test.step("Confirm order", async () => await pageManager.cartPage.confirmOrder());
 
-      await expect(await orderSuccessPage.getTitle()).toBe("Your order is successfully completed!");
-    });
+    await test.step("Check success message", async () =>
+      expect(await pageManager.orderSuccessPage.getTitle()).toBe("Your order is successfully completed!"));
   });
 });

@@ -9,7 +9,7 @@ export class CartComponent {
   }
 
   public async getCartContent(): Promise<string> {
-    return normalizeText(await this.cartContent.textContent())
+    return normalizeText(await this.cartContent.textContent());
   }
 
   public clickToCart(): Promise<void> {

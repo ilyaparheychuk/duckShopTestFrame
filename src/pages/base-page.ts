@@ -7,8 +7,12 @@ export class BasePage {
     this.page = page;
   }
 
-  async goto(url: string | undefined) {
+  async goto(url: string | undefined): Promise<void> {
     await this.page.goto(url || "");
     await this.page.waitForLoadState();
+  }
+
+  async logout(): Promise<void> {
+    await this.page.goto("/logout");
   }
 }

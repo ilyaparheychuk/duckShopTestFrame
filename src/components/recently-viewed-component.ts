@@ -8,6 +8,6 @@ export class RecentlyViewedComponent {
   }
 
   public async getHrefs(): Promise<(string | null)[]> {
-    return await this.recentlyViewedItems.evaluateAll(hrefs => hrefs.map(href => href.getAttribute('href')));
+    return await this.recentlyViewedItems.evaluateAll((hrefs) => hrefs.map((href) => href.getAttribute("href")));
   }
 }

@@ -4,6 +4,7 @@ export class CartPage {
   public page: Page;
 
   public confirmButton: Locator;
+  public removeButton: Locator;
   public paymentDue: Locator;
   public firstNameInput: Locator;
   public emailInput: Locator;
@@ -11,6 +12,7 @@ export class CartPage {
   constructor(page: Page) {
     this.page = page;
     this.confirmButton = page.locator("button[name=confirm_order]");
+    this.removeButton = page.locator("button[name=remove_cart_item]");
     this.paymentDue = page.locator("#order_confirmation-wrapper .footer td:nth-of-type(2)");
     this.firstNameInput = page.locator("input[name=firstname]");
     this.emailInput = page.locator("input[name=email]");
