@@ -1,10 +1,10 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
-import { CartPage } from "../cart-page";
-import { HomePage } from "../home-page";
-import { OrderSuccessPage } from "../order-succes-page";
-import { ProductPage } from "../product-page";
-import { BasePage } from "../base-page";
+import { CartPage } from '../cart-page';
+import { HomePage } from '../home-page';
+import { OrderSuccessPage } from '../order-succes-page';
+import { ProductPage } from '../product-page';
+import { BasePage } from '../base-page';
 
 export class PageManager {
   private page: Page;

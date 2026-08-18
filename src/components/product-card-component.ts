@@ -1,5 +1,5 @@
-import { Page } from "@playwright/test";
-import { ProductName } from "../types/types";
+import { Page } from '@playwright/test';
+import { ProductName } from '../types/types';
 
 export class ProductCardComponent {
   public page: Page;

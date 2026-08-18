@@ -1,7 +1,6 @@
-export type ProductSize = "Small" | "Medium" | "Large";
+export type ProductSize = 'Small' | 'Medium' | 'Large';
 
-export type ProductName = "Purple Duck" | "Green Duck" | "Yellow Duck" | "Blue Duck";
-
+export type ProductName = 'Purple Duck' | 'Green Duck' | 'Yellow Duck' | 'Blue Duck';
 
 export type UserCredentials = {
   username: string;

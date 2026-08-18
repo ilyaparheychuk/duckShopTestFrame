@@ -1,5 +1,5 @@
-import { Locator, Page } from "@playwright/test";
-import { BasePage } from "./base-page";
+import { Locator, Page } from '@playwright/test';
+import { BasePage } from './base-page';
 
 export class CartPage extends BasePage {
   public page: Page;
@@ -13,11 +13,11 @@ export class CartPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.page = page;
-    this.confirmButton = page.locator("button[name=confirm_order]");
-    this.removeButton = page.locator("button[name=remove_cart_item]");
-    this.paymentDue = page.locator("#order_confirmation-wrapper .footer td:nth-of-type(2)");
-    this.firstNameInput = page.locator("input[name=firstname]");
-    this.emailInput = page.locator("input[name=email]");
+    this.confirmButton = page.locator('button[name=confirm_order]');
+    this.removeButton = page.locator('button[name=remove_cart_item]');
+    this.paymentDue = page.locator('#order_confirmation-wrapper .footer td:nth-of-type(2)');
+    this.firstNameInput = page.locator('input[name=firstname]');
+    this.emailInput = page.locator('input[name=email]');
   }
 
   public getOrderSummaryProductQuantity(name: string): Promise<string> {

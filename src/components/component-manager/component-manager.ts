@@ -1,10 +1,9 @@
-import { Page } from "@playwright/test";
-import { LoginComponent } from "../login-component";
-import { CartComponent } from "../cart-component";
-import { NoticeComponent } from "../notice-component";
-import { ProductCardComponent } from "../product-card-component";
-import { RecentlyViewedComponent } from "../recently-viewed-component";
-
+import { Page } from '@playwright/test';
+import { LoginComponent } from '../login-component';
+import { CartComponent } from '../cart-component';
+import { NoticeComponent } from '../notice-component';
+import { ProductCardComponent } from '../product-card-component';
+import { RecentlyViewedComponent } from '../recently-viewed-component';
 
 export class ComponentManager {
   private page: Page;

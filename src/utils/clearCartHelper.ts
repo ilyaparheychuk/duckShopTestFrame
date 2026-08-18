@@ -1,8 +1,8 @@
-import { Page } from "@playwright/test";
-import { PageManager } from "../pages/page-manager/page-manager";
-import { ComponentManager } from "../components/component-manager/component-manager";
-import { UserCredentials } from "../types/types";
-import { Timeouts } from "../enums/enums";
+import { Page } from '@playwright/test';
+import { PageManager } from '../pages/page-manager/page-manager';
+import { ComponentManager } from '../components/component-manager/component-manager';
+import { UserCredentials } from '../types/types';
+import { Timeouts } from '../enums/enums';
 
 //TODO. Rewrite it to API methods
 export async function clearCartViaUI(page: Page, baseURL: string, credentials?: UserCredentials): Promise<void> {
@@ -13,14 +13,14 @@ export async function clearCartViaUI(page: Page, baseURL: string, credentials?: 
 
   if (credentials) {
     await componentManager.loginComponent.loginFlow(credentials.email, credentials.password);
-    await componentManager.noticeComponent.noticeSuccess.waitFor({ state: "visible", timeout: Timeouts.standard });
+    await componentManager.noticeComponent.noticeSuccess.waitFor({ state: 'visible', timeout: Timeouts.standard });
   }
 
-  await pageManager.basePage.goto("/checkout");
+  await pageManager.basePage.goto('/checkout');
 
   if (await pageManager.cartPage.removeButton.isVisible()) {
     await pageManager.cartPage.removeButton.click();
   }
 
-  if (credentials) await page.goto("/logout");
+  if (credentials) await page.goto('/logout');
 }

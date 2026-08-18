@@ -1,7 +1,7 @@
-import { Locator, Page } from "@playwright/test";
-import { getNumberFromPrice } from "../utils/commonUtils";
-import { ProductSize } from "../types/types";
-import { BasePage } from "./base-page";
+import { Locator, Page } from '@playwright/test';
+import { getNumberFromPrice } from '../utils/commonUtils';
+import { ProductSize } from '../types/types';
+import { BasePage } from './base-page';
 
 export class ProductPage extends BasePage {
   public pageTitle: Locator;
@@ -13,12 +13,12 @@ export class ProductPage extends BasePage {
 
   constructor(page: Page) {
     super(page);
-    this.pageTitle = page.locator("div[id=box-product] h1[class=title]");
-    this.productPrice = page.locator("div[id=box-product] span[class=price]");
-    this.productCampaignPrice = page.locator(".campaign-price");
-    this.productSizeSelect = page.locator("form[name=buy_now_form] select");
-    this.quantityInput = page.locator("input[name=quantity]");
-    this.addToCartButton = page.locator("button[name=add_cart_product]");
+    this.pageTitle = page.locator('div[id=box-product] h1[class=title]');
+    this.productPrice = page.locator('div[id=box-product] span[class=price]');
+    this.productCampaignPrice = page.locator('.campaign-price');
+    this.productSizeSelect = page.locator('form[name=buy_now_form] select');
+    this.quantityInput = page.locator('input[name=quantity]');
+    this.addToCartButton = page.locator('button[name=add_cart_product]');
   }
 
   public getTitle(): Promise<string> {

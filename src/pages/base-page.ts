@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
 export class BasePage {
   protected page: Page;
@@ -8,11 +8,11 @@ export class BasePage {
   }
 
   async goto(url: string | undefined): Promise<void> {
-    await this.page.goto(url || "");
+    await this.page.goto(url || '');
     await this.page.waitForLoadState();
   }
 
   async logout(): Promise<void> {
-    await this.page.goto("/logout");
+    await this.page.goto('/logout');
   }
 }
