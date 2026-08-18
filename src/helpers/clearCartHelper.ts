@@ -22,5 +22,7 @@ export async function clearCartViaUI(page: Page, baseURL: string, credentials?: 
     await pageManager.cartPage.removeButton.click();
   }
 
+  await pageManager.cartPage.noItemMessage.waitFor({ state: 'visible', timeout: Timeouts.standard });
+
   if (credentials) await page.goto('/logout');
 }

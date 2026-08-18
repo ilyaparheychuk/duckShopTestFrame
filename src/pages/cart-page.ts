@@ -9,6 +9,7 @@ export class CartPage extends BasePage {
   public paymentDue: Locator;
   public firstNameInput: Locator;
   public emailInput: Locator;
+  public noItemMessage: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -18,6 +19,7 @@ export class CartPage extends BasePage {
     this.paymentDue = page.locator('#order_confirmation-wrapper .footer td:nth-of-type(2)');
     this.firstNameInput = page.locator('input[name=firstname]');
     this.emailInput = page.locator('input[name=email]');
+    this.noItemMessage = page.locator('//*[text()="There are no items in your cart."]');
   }
 
   public getOrderSummaryProductQuantity(name: string): Promise<string> {
