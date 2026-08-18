@@ -20,7 +20,7 @@ test.describe('Test case 2', () => {
     const quantity = '2';
     let sum: number;
 
-    await test.step('Open home page', async () => await pageManager.homePage.goto(baseURL));
+    await test.step('Open home page', async () => await pageManager.homePage.goto(baseURL!));
 
     await test.step('Login to Litecart', async () =>
       await componentManager.loginComponent.loginFlow(credentials.email, credentials.password));

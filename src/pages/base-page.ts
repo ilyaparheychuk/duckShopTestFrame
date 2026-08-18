@@ -7,8 +7,8 @@ export class BasePage {
     this.page = page;
   }
 
-  async goto(url: string | undefined): Promise<void> {
-    await this.page.goto(url || '');
+  async goto(url: string): Promise<void> {
+    await this.page.goto(url);
     await this.page.waitForLoadState();
   }
 

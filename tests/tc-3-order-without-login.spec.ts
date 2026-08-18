@@ -20,7 +20,7 @@ test.describe('Test case 3', () => {
     const cardNameGreen: ProductName = 'Green Duck';
     let sum: number;
 
-    await test.step('Open home page', async () => await pageManager.homePage.goto(baseURL));
+    await test.step('Open home page', async () => await pageManager.homePage.goto(baseURL!));
 
     await test.step('Add Purple Duck to cart', async () => {
       await componentManager.productCardComponent.chooseCardByTitleName(cardNamePurple);
@@ -61,7 +61,7 @@ test.describe('Test case 3', () => {
       await expect(pageManager.cartPage.emailInput).toHaveValue('');
     });
 
-    await test.step('Go to Home page', async () => await pageManager.homePage.goto(baseURL));
+    await test.step('Go to Home page', async () => await pageManager.homePage.goto(baseURL!));
 
     await test.step('Check Recently viewed contains products', async () => {
       const hrefs = await componentManager.recentlyViewedComponent.getHrefs();

@@ -9,7 +9,7 @@ test.describe('Test case 4', () => {
     const pageManager = new PageManager(page);
     const componentManager = new ComponentManager(page);
 
-    await test.step('Open home page', async () => await pageManager.homePage.goto(baseURL));
+    await test.step('Open home page', async () => await pageManager.homePage.goto(baseURL!));
 
     await test.step('Enter correct email and incorrect password', async () =>
       await componentManager.loginComponent.fillForm(credentials.email, '123456'));
