@@ -9,7 +9,11 @@
     "test:tc1": "npx playwright test tests/tc-1-order-one-product-without-sales.spec.ts",
     "test:tc2": "npx playwright test tests/tc-2-order-one-product-with-sales.spec.ts",
     "test:tc3": "npx playwright test tests/tc-3-order-without-login.spec.ts",
-    "test:tc4": "npx playwright test tests/tc-4-invalid-login.spec.ts"
+    "test:tc4": "npx playwright test tests/tc-4-invalid-login.spec.ts",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "repository": {
     "type": "git",
@@ -27,6 +31,13 @@
     "@playwright/test": "^1.62.1",
     "@types/node": "^26.2.0",
     "dotenv": "^17.4.2",
-    "allure-playwright": "^3.10.2"
+    "allure-playwright": "^3.10.2",
+    "prettier": "^3.9.6",
+    "eslint": "^10.8.1",
+    "@typescript-eslint/parser": "^8.67.0",
+    "@typescript-eslint/eslint-plugin": "^8.67.0",
+    "eslint-plugin-playwright": "^2.11.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6"
   }
 }

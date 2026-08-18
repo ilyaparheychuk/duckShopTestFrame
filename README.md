@@ -7,7 +7,7 @@
 ```
    TEST_USER_EMAIL=
    TEST_USERNAME=
-   TEST_PASSWORD
+   TEST_PASSWORD=
 ```
 
 ## Run tests from command line
@@ -18,7 +18,7 @@ All tests:
 npm run test:all
 ```
 
-Some scenarios (see npm scropis in package.json)
+Some test file (see npm scripts in package.json):
 
 ```
 npm run test:tc1

@@ -1,6 +1,7 @@
 import { Locator, Page } from "@playwright/test";
+import { BasePage } from "./base-page";
 
-export class CartPage {
+export class CartPage extends BasePage {
   public page: Page;
 
   public confirmButton: Locator;
@@ -10,6 +11,7 @@ export class CartPage {
   public emailInput: Locator;
 
   constructor(page: Page) {
+    super(page);
     this.page = page;
     this.confirmButton = page.locator("button[name=confirm_order]");
     this.removeButton = page.locator("button[name=remove_cart_item]");

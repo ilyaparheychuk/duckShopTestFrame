@@ -1,8 +1,9 @@
 import { Locator, Page } from "@playwright/test";
 import { getNumberFromPrice } from "../utils/commonUtils";
 import { ProductSize } from "../types/types";
+import { BasePage } from "./base-page";
 
-export class ProductPage {
+export class ProductPage extends BasePage {
   public pageTitle: Locator;
   public productPrice: Locator;
   public productCampaignPrice: Locator;
@@ -11,6 +12,7 @@ export class ProductPage {
   public addToCartButton: Locator;
 
   constructor(page: Page) {
+    super(page);
     this.pageTitle = page.locator("div[id=box-product] h1[class=title]");
     this.productPrice = page.locator("div[id=box-product] span[class=price]");
     this.productCampaignPrice = page.locator(".campaign-price");

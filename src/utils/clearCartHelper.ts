@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import { PageManager } from "../pages/page-manager/page-manager";
 import { ComponentManager } from "../components/component-manager/component-manager";
 import { UserCredentials } from "../types/types";
-import { expect } from "@playwright/test";
 import { Timeouts } from "../enums/enums";
 
 //TODO. Rewrite it to API methods
