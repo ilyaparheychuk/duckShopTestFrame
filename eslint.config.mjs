@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import playwright from 'eslint-plugin-playwright';
 import globals from 'globals';
+import prettierPlugin from 'eslint-plugin-prettier';
 
 export default tseslint.config(
   {
@@ -28,6 +29,9 @@ export default tseslint.config(
 
   {
     files: ['**/*.ts', '**/*.tsx'],
+    plugins: {
+      prettier: prettierPlugin,
+    },
     languageOptions: {
       globals: {
         ...globals.node,
@@ -35,6 +39,7 @@ export default tseslint.config(
       },
     },
     rules: {
+      'prettier/prettier': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       'no-console': 'warn',
     },

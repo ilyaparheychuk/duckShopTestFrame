@@ -4,7 +4,7 @@ import { HrefProductName, Timeouts } from '../src/enums/enums';
 import { PageManager } from '../src/pages/page-manager/page-manager';
 import { ComponentManager } from '../src/components/component-manager/component-manager';
 import { test } from '../src/fixtures/fixtures';
-import { clearCartViaUI } from '../src/utils/clearCartHelper';
+import { clearCartViaUI } from '../src/helpers/clearCartHelper';
 
 test.describe('Test case 3', () => {
   //TODO. Rewrite it to API methods
